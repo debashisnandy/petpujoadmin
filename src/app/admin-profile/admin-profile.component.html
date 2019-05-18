@@ -1,0 +1,125 @@
+<mat-tab-group>
+  <mat-tab label="Admin">
+    <div class="row">
+        <form (ngSubmit)="onSubmit()" #fr="ngForm">
+            <div class="col s12">
+              <div class="row"> 
+                <div class="container">
+                  <div class="row">
+                      <div class="col s12">
+                          <div class="heading-signin">
+                            <h3>CHANGE PASSWORD</h3>
+                          </div>
+                        </div>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <div class="row">
+                <div class="container">
+                  
+                  <div class="row">
+                      <div class="col s12">
+                        <div class="row">
+                          <div class="col s11">
+                              <input 
+                              matInput 
+                              ngModel
+                              #password="ngModel"
+                              name="password"
+                              placeholder="Enter your password" 
+                              required
+                              minlength="8"
+                              [type]="hide ? 'password' : 'text'">
+                          </div>
+                          <div class="col s1">
+                              <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </div>
+                          
+                        </div>
+                        <mat-error *ngIf="password.invalid && password.touched"> Please enter password of min length 8 </mat-error>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col s12">
+                        <div class="row">
+                          <div class="col s11">
+                              <input 
+                              matInput 
+                              ngModel
+                              #newpassword="ngModel"
+                              name="newpassword"
+                              placeholder="Enter your new password" 
+                              required
+                              minlength="8"
+                              [type]="hideNew ? 'password' : 'text'">
+                          </div>
+                          <div class="col s1">
+                              <mat-icon matSuffix (click)="hideNew = !hideNew" style="cursor: pointer;">{{hideNew ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </div>
+                          
+                        </div>
+                        <mat-error *ngIf="newpassword.invalid && newpassword.touched"> Your password min length should be 8 </mat-error>
+                        <br>
+                        <mat-error *ngIf="(newpassword.value === password.value) && newpassword.touched"> Password Should not be same as old one </mat-error>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col s12">
+                        <div class="row">
+                          <div class="col s11">
+                              <input 
+                              matInput 
+                              ngModel
+                              #cnfrmpassword="ngModel"
+                              name="cnfrmpassword"
+                              placeholder="Enter your new password again" 
+                              required
+                              minlength="8"
+                              [type]="hideConfrm ? 'password' : 'text'">
+                          </div>
+                          <div class="col s1">
+                              <mat-icon matSuffix (click)="hideConfrm = !hideConfrm" style="cursor: pointer;">{{hideConfrm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </div>
+                          
+                        </div>
+                        
+                        <mat-error *ngIf="(newpassword.value !== cnfrmpassword.value) && cnfrmpassword.touched"> Password Not Matching </mat-error>
+                        
+                      </div>
+                  </div>
+                </div>
+                
+              </div>
+            
+              <div class="row">
+                <div class="container">
+                  <div class="row">
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light"
+                         type="submit" [disabled]="(fr.invalid) || (newpassword.value !== cnfrmpassword.value) || (newpassword.value === password.value)" 
+                         name="action">Change Password
+                            <i class="material-icons right">send</i>
+                          </button>
+                    </div>
+                  </div>
+                </div>
+                  
+              </div>
+            </div>
+          </form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Staff"> 
+    
+    
+
+    <div class="row" style="margin-top: 30px;">
+      <div class="col s12">
+        <app-create-account></app-create-account>
+      </div>
+    </div>
+  </mat-tab>
+  
+</mat-tab-group>

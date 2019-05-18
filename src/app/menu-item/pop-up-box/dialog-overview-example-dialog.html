@@ -1,0 +1,13 @@
+
+<div mat-dialog-content>
+  
+    <input matInput [(ngModel)]="data.foodName" placeholder="Food Name">
+  
+  
+    <input [(ngModel)]="data.amount" placeholder="Amount" type="number">
+  
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

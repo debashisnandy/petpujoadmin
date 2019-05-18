@@ -1,0 +1,83 @@
+<form (ngSubmit)="onSubmit()" #fr="ngForm">
+    
+    
+      
+      <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <input matInput 
+                    ngModel
+                    #userName="ngModel"
+                    placeholder="Enter staff name" 
+                    name="userName" required>
+                    <mat-error *ngIf="userName.invalid && userName.touched"> Please enter a name </mat-error>
+                </div>
+            </div>
+          <div class="row">
+              <div class="col s12">
+                  <input matInput 
+                  ngModel
+                  #email="ngModel"
+                  placeholder="Enter staff email" 
+                  email
+                  name="email" required>
+                  <mat-error *ngIf="email.invalid && email.touched"> Please enter a valid email </mat-error>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s11">
+                      <input 
+                      matInput 
+                      ngModel
+                      #password="ngModel"
+                      name="password"
+                      minlength="8"
+                      placeholder="Enter password" 
+                      required
+                      [type]="hide ? 'password' : 'text'">
+                  </div>
+                  <div class="col s1">
+                      <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </div>
+                  
+                </div>
+                <mat-error *ngIf="password.invalid && password.touched"> Please enter password of min length 8 </mat-error>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s11">
+                      <input 
+                      matInput 
+                      ngModel
+                      #repassword="ngModel"
+                      name="repassword"
+                      minlength="8"
+                      placeholder="Re-Enter password" 
+                      required
+                      [type]="hideConfrm ? 'password' : 'text'">
+                  </div>
+                  <div class="col s1">
+                      <mat-icon matSuffix (click)="hideConfrm = !hideConfrm" style="cursor: pointer;">{{hideConfrm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </div>
+                  
+                </div>
+                <mat-error *ngIf="(password.value !== repassword.value) && repassword.touched"> Please not matched </mat-error>
+              </div>
+          </div>
+        </div>
+        
+      </div>
+    
+      <div class="row">
+          <button class="btn waves-effect waves-light" type="submit" [disabled]="!fr.valid || password.value !== repassword.value" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+      </div>
+   
+  </form>

@@ -1,0 +1,4 @@
+.chiplist-custom{
+    display: flex;
+    flex-direction: row-reverse;
+}
